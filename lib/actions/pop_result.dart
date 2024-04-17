@@ -13,5 +13,5 @@ class PopWithResults<T> {
 
   /// constructor
   PopWithResults(
-      {@required this.fromPage, @required this.toPage, this.results});
+      {required this.fromPage, required this.toPage, this.results});
 }

@@ -13,7 +13,7 @@ typedef LocaleChangeCallback = void Function(Locale locale);
 
 class I18n implements WidgetsLocalizations {
   const I18n();
-  static Locale _locale;
+  static Locale? _locale;
   static bool _shouldReload = false;
 
   static set locale(Locale newLocale) {
@@ -24,9 +24,9 @@ class I18n implements WidgetsLocalizations {
   static const GeneratedLocalizationsDelegate delegate = GeneratedLocalizationsDelegate();
 
   /// function to be invoked when changing the language
-  static LocaleChangeCallback onLocaleChanged;
+  static LocaleChangeCallback? onLocaleChanged;
 
-  static I18n of(BuildContext context) =>
+  static I18n? of(BuildContext context) =>
     Localizations.of<I18n>(context, WidgetsLocalizations);
 
   @override
@@ -204,6 +204,30 @@ class I18n implements WidgetsLocalizations {
   String get whatKindOfMovieDoYouLike => "What kind of movie do you like";
   /// "What kind of tvshow do you like"
   String get whatKindOfTvShowDoYouLike => "What kind of tvshow do you like";
+
+  @override
+  // TODO: implement reorderItemDown
+  String get reorderItemDown => throw UnimplementedError();
+
+  @override
+  // TODO: implement reorderItemLeft
+  String get reorderItemLeft => throw UnimplementedError();
+
+  @override
+  // TODO: implement reorderItemRight
+  String get reorderItemRight => throw UnimplementedError();
+
+  @override
+  // TODO: implement reorderItemToEnd
+  String get reorderItemToEnd => throw UnimplementedError();
+
+  @override
+  // TODO: implement reorderItemToStart
+  String get reorderItemToStart => throw UnimplementedError();
+
+  @override
+  // TODO: implement reorderItemUp
+  String get reorderItemUp => throw UnimplementedError();
 }
 
 class _I18n_en_US extends I18n {
@@ -2069,9 +2093,9 @@ class GeneratedLocalizationsDelegate extends LocalizationsDelegate<WidgetsLocali
     ];
   }
 
-  LocaleResolutionCallback resolution({Locale fallback}) {
-    return (Locale locale, Iterable<Locale> supported) {
-      if (isSupported(locale)) {
+  LocaleResolutionCallback resolution({Locale? fallback}) {
+    return (Locale? locale, Iterable<Locale> supported) {
+      if (isSupported(locale!)) {
         return locale;
       }
       final Locale fallbackLocale = fallback ?? supported.first;
@@ -2084,7 +2108,7 @@ class GeneratedLocalizationsDelegate extends LocalizationsDelegate<WidgetsLocali
     I18n._locale ??= locale;
     I18n._shouldReload = false;
     final String lang = I18n._locale != null ? I18n._locale.toString() : "";
-    final String languageCode = I18n._locale != null ? I18n._locale.languageCode : "";
+    final String? languageCode = I18n._locale != null ? I18n._locale?.languageCode : "";
     if ("en_US" == lang) {
       return SynchronousFuture<WidgetsLocalizations>(const _I18n_en_US());
     }

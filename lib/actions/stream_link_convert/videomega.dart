@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:movie/actions/api/urlresolver_api.dart';
 
 class Videomega {
-  static Future<String> getUrl(String link) async {
-    String _link;
+  static Future<String?> getUrl(String link) async {
+    String? _link;
     String _replaceLink = link.contains("/e/")
         ? link
         : "https://www.videomega.co/e/" + link.split("/")[3];

@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 
 class Fembed {
-  static Future<String> getUrl(String link) async {
-    String _link;
+  static Future<String?> getUrl(String link) async {
+    String? _link;
     String _file = link.split('/')[4];
     try {
       final Response _response = await Dio().post(

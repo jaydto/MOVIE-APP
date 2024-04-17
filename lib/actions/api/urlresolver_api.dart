@@ -11,7 +11,7 @@ class UrlResolverApi {
   final String _apiKey = AppConfig.instance.urlresolverApiKey;
 
   Future<ResponseModel<dynamic>> getDirectUrl(String link, String domain,
-      {String mode, String token}) async {
+      {String? mode, String? token}) async {
     final String _url = '/$domain';
     final String _auth = '{"auth":"","skk":"$_apiKey"}';
     final _data = {

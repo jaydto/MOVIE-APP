@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:movie/actions/api/urlresolver_api.dart';
 
 class Gounlimited {
-  static Future<String> getUrl(String link) async {
-    String _link;
+  static Future<String?> getUrl(String link) async {
+    String? _link;
     try {
       final Response _response = await Dio().get(link);
       final _result = await UrlResolverApi.instance

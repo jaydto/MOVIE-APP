@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:graphql/client.dart';
 
 class GraphQLService {
-  HttpLink _httpLink;
-  WebSocketLink _webSocketLink;
+  late HttpLink _httpLink;
+  late WebSocketLink _webSocketLink;
   InMemoryCache cache = InMemoryCache();
-  GraphQLClient _httpClient;
-  GraphQLClient _websocketClient;
+  late GraphQLClient _httpClient;
+  late GraphQLClient _websocketClient;
   void setupClient(
-      {@required String httpLink, @required String webSocketLink}) {
+      {@required String? httpLink, @required String? webSocketLink}) {
     /*final AuthLink authLink = AuthLink(
       getToken: () => token
     );*/
@@ -42,7 +42,7 @@ class GraphQLService {
   }
 
   Stream<FetchResult> subscribe(String subscription,
-      {String operationName, Map<String, dynamic> variables}) {
+      {String? operationName, Map<String, dynamic>? variables}) {
     var _stream = _websocketClient.subscribe(Operation(
         documentNode: gql(subscription),
         variables: variables,

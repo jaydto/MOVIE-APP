@@ -16,7 +16,7 @@ import 'generated/i18n.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class App extends StatefulWidget {
-  App({Key key}) : super(key: key);
+  App({Key? key}) : super(key: key);
 
   @override
   _AppState createState() => _AppState();

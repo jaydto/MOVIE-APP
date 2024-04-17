@@ -3,17 +3,17 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 
 class Jetload {
-  static Future<String> getUrl(String link) async {
-    String _link;
-    String _replaceLink = link.replaceAll('/p/', '/e/');
-    String v = '';
-    String cb = '123456789';
-    String siteKey = '6Lc90MkUAAAAAOrqIJqt4iXY_fkXb7j3zwgRGtUI';
-    String co = 'aHR0cHM6Ly9qZXRsb2FkLm5ldDo0NDM.';
-    String sa = 'secure_url';
-    String _url =
+  static Future<String?> getUrl(String link) async {
+    String? _link;
+    String? _replaceLink = link.replaceAll('/p/', '/e/');
+    String? v = '';
+    String? cb = '123456789';
+    String? siteKey = '6Lc90MkUAAAAAOrqIJqt4iXY_fkXb7j3zwgRGtUI';
+    String? co = 'aHR0cHM6Ly9qZXRsb2FkLm5ldDo0NDM.';
+    String? sa = 'secure_url';
+    String? _url =
         'https://www.google.com/recaptcha/api2/anchor?ar=1&k=$siteKey&co=$co&hl=ro&v=$v&size=invisible&cb=$cb';
-    Map<String, String> _headers = {
+    Map<String, String>? _headers = {
       "Accept":
           "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
       "Accept-Language": "ro-RO,ro;q=0.8,en-US;q=0.6,en-GB;q=0.4,en;q=0.2",
@@ -25,9 +25,9 @@ class Jetload {
       RegExp _regExp = new RegExp(
           "recaptcha-token\"\\s*value\\s*=\\s*\"(.*?)\"",
           dotAll: true);
-      RegExpMatch _m = _regExp.firstMatch(_response.data);
-      if (_m.groupCount > 0) {
-        String _token = _m.group(1);
+      RegExpMatch? _m = _regExp.firstMatch(_response.data);
+      if (_m!.groupCount > 0) {
+        String? _token = _m.group(1);
         String _url2 =
             "https://www.google.com/recaptcha/api2/reload?k=" + siteKey;
         Map<String, String> _params = {
@@ -51,18 +51,18 @@ class Jetload {
                 Options(headers: _headers, responseType: ResponseType.plain));
         _regExp = new RegExp("\\/[p|e]\\/([a-zA-Z0-9_]+)", dotAll: true);
         _m = _regExp.firstMatch(_replaceLink);
-        if (_m.groupCount > 0) {
-          String streamid = _m.group(1);
+        if (_m!.groupCount > 0) {
+          String? streamid = _m.group(1);
           _regExp =
               new RegExp("rresp\\s*\"\\s*,\\s*\"\\s*(.*?)\"", dotAll: true);
           _m = _regExp.firstMatch(_response.data);
-          if (_m.groupCount > 0) {
-            _token = _m.group(1);
+          if (_m!.groupCount > 0) {
+            _token = _m?.group(1);
             _params = {"token": _token, "stream_code": streamid};
             String pars = "{\"token\":\"" +
                 _token +
                 "\",\"stream_code\":\"" +
-                streamid +
+                streamid! +
                 "\"}";
             _headers = {
               "Referer": _replaceLink,

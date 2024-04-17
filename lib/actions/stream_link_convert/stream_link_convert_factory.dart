@@ -73,9 +73,9 @@ class StreamLinkConvertFactory {
     'vup',
     'waaw'
   ];
-  Future<String> getLink(String link) async {
+  Future<String?> getLink(String link) async {
     final String _domain = _getDomain(link);
-    String _link;
+    String? _link;
     switch (_domain) {
       case 'archive':
         _link = await Archive.getUrl(link);

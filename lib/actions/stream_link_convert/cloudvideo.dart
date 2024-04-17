@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:movie/actions/api/urlresolver_api.dart';
 
 class CloudVideo {
-  static Future<String> getUrl(String link) async {
-    String _link = link.contains("/embed-")
+  static Future<String?> getUrl(String link) async {
+    String? _link = link.contains("/embed-")
         ? link
         : "https://cloudvideo.tv/embed-" +
             link.replaceAll(".html", "").split("/")[3] +

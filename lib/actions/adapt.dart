@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 
 class Adapt {
-  static MediaQueryData mediaQuery;
-  static double _width;
-  static double _height;
-  static double _topbarH;
-  static double _botbarH;
-  static double _pixelRatio;
+  static MediaQueryData? mediaQuery;
+  static double? _width;
+  static double? _height;
+  static double? _topbarH;
+  static double? _botbarH;
+  static double? _pixelRatio;
   static var _ratio;
   static initContext(BuildContext context) {
     if (mediaQuery == null) {
       mediaQuery = MediaQuery.of(context);
-      _width = mediaQuery.size.width;
-      _height = mediaQuery.size.height;
-      _topbarH = mediaQuery.padding.top;
-      _botbarH = mediaQuery.padding.bottom;
-      _pixelRatio = mediaQuery.devicePixelRatio;
+      _width = mediaQuery?.size.width;
+      _height = mediaQuery?.size.height;
+      _topbarH = mediaQuery?.padding.top;
+      _botbarH = mediaQuery?.padding.bottom;
+      _pixelRatio = mediaQuery?.devicePixelRatio;
     }
   }
 
   static init(int number) {
     int uiwidth = number is int ? number : 750;
-    _ratio = _width / uiwidth;
+    _ratio = (_width! / uiwidth!)!;
   }
 
   static px(number) {
@@ -32,7 +32,7 @@ class Adapt {
   }
 
   static onepx() {
-    return 1 / _pixelRatio;
+    return 1 / _pixelRatio!;
   }
 
   static screenW() {

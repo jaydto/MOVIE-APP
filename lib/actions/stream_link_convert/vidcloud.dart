@@ -3,14 +3,14 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 
 class Vidcloud {
-  static Future<String> getUrl(String link) async {
-    String _link;
-    String v = 'JZfekeK8w6ZlhLfH_ZyseSLX';
-    String cb = 'ilzxej5hmdxe';
-    String siteKey = '6LdqXa0UAAAAABc77NIcku_LdXJio9kaJVpYkgQJ';
-    String co = 'aHR0cHM6Ly92aWRjbG91ZC5ydTo0NDM.';
-    String sa = 'get_playerr';
-    String _url =
+  static Future<String?> getUrl(String link) async {
+    String?_link;
+    String? v = 'JZfekeK8w6ZlhLfH_ZyseSLX';
+    String? cb = 'ilzxej5hmdxe';
+    String? siteKey = '6LdqXa0UAAAAABc77NIcku_LdXJio9kaJVpYkgQJ';
+    String? co = 'aHR0cHM6Ly92aWRjbG91ZC5ydTo0NDM.';
+    String? sa = 'get_playerr';
+    String? _url =
         'https://www.google.com/recaptcha/api2/anchor?ar=1&k=$siteKey&co=$co&hl=ro&v=$v&size=invisible&cb=$cb';
     Map<String, String> _headers = {
       "Accept":
@@ -24,9 +24,9 @@ class Vidcloud {
       RegExp _regExp = new RegExp(
           "recaptcha-token\"\\s*value\\s*=\\s*\"(.*?)\"",
           dotAll: true);
-      RegExpMatch _m = _regExp.firstMatch(_response.data);
-      if (_m.groupCount > 0) {
-        String _token = _m.group(1);
+      RegExpMatch? _m = _regExp.firstMatch(_response.data);
+      if (_m!.groupCount > 0) {
+        String? _token = _m.group(1);
         String _url2 =
             "https://www.google.com/recaptcha/api2/reload?k=" + siteKey;
         Map<String, String> _params = {
@@ -39,7 +39,7 @@ class Vidcloud {
         };
         String _post = _params.keys
             .map((e) =>
-                '${utf8.decode(e.codeUnits)}=${utf8.decode(_params[e].codeUnits)}')
+                '${utf8.decode(e.codeUnits)}=${utf8.decode(_params[e]!.codeUnits)}')
             .join('&');
         _headers = {
           "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
@@ -50,12 +50,12 @@ class Vidcloud {
                 Options(headers: _headers, responseType: ResponseType.plain));
         _regExp = new RegExp("\\/[p|e]\\/([a-zA-Z0-9_]+)", dotAll: true);
         _m = _regExp.firstMatch(link);
-        if (_m.groupCount > 0) {
-          String streamid = _m.group(1);
+        if (_m!.groupCount > 0) {
+          String? streamid = _m.group(1);
           _regExp =
               new RegExp("rresp\\s*\"\\s*,\\s*\"\\s*(.*?)\"", dotAll: true);
           _m = _regExp.firstMatch(_response.data);
-          if (_m.groupCount > 0) {
+          if (_m!.groupCount > 0) {
             _token = _m.group(1);
             String page = link.contains("/embed") ? "embed" : "video";
 
@@ -74,16 +74,16 @@ class Vidcloud {
               'fid': streamid,
             });
             if (_response.data != null) {
-              String _jsonData = _response.data["html"];
+              String? _jsonData = _response?.data["html"];
               _regExp = new RegExp("sources\\s*=\\s*\\[(.*?)]");
               _m = _regExp.firstMatch(link);
               _jsonData = null;
-              if (_m.groupCount > 0) _jsonData = _m.group(1);
+              if (_m!.groupCount > 0) _jsonData = _m.group(1);
               if (_jsonData != null) {
                 final _arr = json.decode('[$_jsonData]');
                 for (int i = 0; i < _arr.length(); i++) {
                   _link = _arr[i]['file'];
-                  if (_link.contains(".mp4")) break;
+                  if (_link!.contains(".mp4")) break;
                 }
 
                 if (_link != null) _link = _link.replaceAll("\\", "");

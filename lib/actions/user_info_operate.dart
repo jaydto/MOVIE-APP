@@ -9,7 +9,7 @@ import 'api/base_api.dart';
 
 class UserInfoOperate {
   static bool isPremium = false;
-  static String premiumExpireDate;
+  static String? premiumExpireDate;
 
   static Future whenLogin(FirebaseUser user, String nickName) async {
     final _baseApi = BaseApi.instance;

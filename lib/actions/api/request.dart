@@ -5,7 +5,7 @@ import 'package:movie/models/response_model.dart';
 
 class Request {
   final String baseurl;
-  Dio _dio;
+  Dio? _dio;
   Request(this.baseurl) {
     _dio = new Dio(BaseOptions(baseUrl: baseurl));
   }
@@ -15,15 +15,15 @@ class Request {
       dynamic data,
       dynamic queryParameters,
       bool cached = false,
-      Map<String, Object> headers,
+      Map<String, Object>? headers,
       Duration cacheDuration = const Duration(days: 1),
       Duration maxStale = const Duration(days: 30)}) async {
     try {
       if (cached)
-        _dio.interceptors.add(DioCacheManager(CacheConfig()).interceptor);
-      if (headers != null) _dio.options.headers = headers;
-      _dio.options.method = method;
-      final response = await _dio.request(
+        _dio?.interceptors.add(DioCacheManager(CacheConfig()).interceptor);
+      if (headers != null) _dio?.options.headers = headers;
+      _dio?.options.method = method;
+      final response = await _dio?.request(
         host,
         data: data,
         queryParameters: queryParameters,
@@ -35,9 +35,9 @@ class Request {
             : null,
       );
       return ResponseModel<T>(
-          statusCode: response.statusCode,
+          statusCode: response?.statusCode,
           message: response.statusMessage,
-          result: ModelFactory.generate(response.data));
+          result: ModelFactory.generate(response?.data));
     } on DioError catch (_) {
       return ResponseModel(
           statusCode: _.response?.statusCode ?? _.type.index,

@@ -264,7 +264,7 @@ class BaseApi {
   }
 
   Future<ResponseModel<dynamic>> getMovieLikes(
-      {int movieid, String uid = ''}) async {
+      {int ?movieid, String uid = ''}) async {
     final String _url = '/Movies/Like/$movieid?uid=$uid';
     final r = await _http.request(_url);
     return r;
@@ -310,7 +310,7 @@ class BaseApi {
   }
 
   Future<ResponseModel<dynamic>> getTvShowLikes(
-      {int tvid, int season = 0, int episode = 0, String uid = ''}) async {
+      {int ?tvid, int season = 0, int episode = 0, String uid = ''}) async {
     final String _url =
         '/TvShows/Like/$tvid?season=$season&episode=$episode&uid=$uid';
     final r = await _http.request(_url);
@@ -444,7 +444,7 @@ class BaseApi {
   }
 
   Future<ResponseModel<TransactionModel>> transactionSearch(String userId,
-      {DateTime begin, DateTime end}) async {
+      {DateTime ?begin, DateTime ?end}) async {
     final String _url = '/payment/TransactionSearch/$userId';
     final _r = await _http.request<TransactionModel>(_url);
     return _r;
@@ -524,8 +524,8 @@ class BaseApi {
     return _r;
   }
 
-  Future<BillingAddress> createBillAddress(BillingAddress address) async {
-    BillingAddress _model;
+  Future<BillingAddress?> createBillAddress(BillingAddress address) async {
+    BillingAddress? _model;
     final String _url = '/Payment/Customer/BillingAddress';
     final _r = await _http.request(_url, method: 'POST', data: {
       'customerID': address.customerId,
@@ -546,8 +546,8 @@ class BaseApi {
     return _model;
   }
 
-  Future<BillingAddress> updateBillAddress(BillingAddress address) async {
-    BillingAddress _model;
+  Future<BillingAddress?> updateBillAddress(BillingAddress address) async {
+    BillingAddress? _model;
     String _url = '/Payment/Customer/BillingAddress';
     var _r = await _http.request(_url, method: 'PUT', data: {
       'customerID': address.customerId,
@@ -569,8 +569,8 @@ class BaseApi {
     return _model;
   }
 
-  Future<BillingAddress> deleteBillAddress(BillingAddress address) async {
-    BillingAddress _model;
+  Future<BillingAddress?> deleteBillAddress(BillingAddress address) async {
+    BillingAddress? _model;
     String _url = '/Payment/Customer/BillingAddress';
     var _r = await _http.request(_url,
         method: 'DELETE',
@@ -675,9 +675,9 @@ class BaseApi {
     return _r;
   }
 
-  Future<StripeAddress> updateStripeAddress(String stripeCustomerId,
+  Future<StripeAddress?> updateStripeAddress(String stripeCustomerId,
       String customerName, StripeAddress address) async {
-    StripeAddress _model;
+    StripeAddress? _model;
     String _url = '/StripePayment/Customer/BillingAddress';
     var _r = await _http.request(_url, method: 'POST', data: {
       'customerID': stripeCustomerId,
@@ -696,8 +696,8 @@ class BaseApi {
     return _model;
   }
 
-  Future<StripeAddress> deleteStripeAddress(String stripeCustomerId) async {
-    StripeAddress _model;
+  Future<StripeAddress?> deleteStripeAddress(String stripeCustomerId) async {
+    StripeAddress? _model;
     String _url = '/StripePayment/Customer/BillingAddress/$stripeCustomerId';
     var _r = await _http.request(_url, method: 'DELETE');
     if (_r.success) if (_r.result['status'])

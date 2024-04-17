@@ -100,5 +100,9 @@
     <string>use camera for scan credit card</string>
     <key>NSMicrophoneUsageDescription</key>
     <string>use mic for get sound</string>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
 </dict>
 </plist>

@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:movie/actions/api/urlresolver_api.dart';
 
 class Jawcloud {
-  static Future<String> getUrl(String link) async {
-    String _link;
+  static Future<String?> getUrl(String link) async {
+    String? _link;
     String _replaceLink = link.contains('/embed')
         ? link
         : "https://jawcloud.co/embed-" + link.split("/")[3];

@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:movie/actions/api/urlresolver_api.dart';
 
 class Uptostream {
-  static Future<String> getUrl(String link) async {
-    String _link;
+  static Future<String?> getUrl(String link) async {
+    String? _link;
     String _replaceLink = link.replaceAll("uptobox.com", "uptostream.com");
     String _file = _replaceLink.split("/")[3];
     try {
